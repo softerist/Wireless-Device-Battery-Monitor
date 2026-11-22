@@ -2,8 +2,10 @@
 # the Windows port; the Linux target links only this subset.
 
 set(WB_PORTABLE_DRIVERS
+    zebronics.cpp
     glorious.cpp
     kysona.cpp
+    keychron.cpp
     logitech.cpp
     razer.cpp
     steelseries.cpp
@@ -11,7 +13,11 @@ set(WB_PORTABLE_DRIVERS
     hyperx.cpp
     playstation.cpp
     coolermaster.cpp
-    finalmouse.cpp)
+    finalmouse.cpp
+    lamzu.cpp
+    aula.cpp
+    ninjutso.cpp
+    rapoo.cpp)
 
 list(TRANSFORM WB_PORTABLE_DRIVERS PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/")
 

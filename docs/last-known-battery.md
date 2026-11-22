@@ -167,6 +167,65 @@ production targets retain their normal build flags.
 
 ## Recorded local validation
 
+### Final review-correction checkpoint
+
+The 2026-11-22 follow-up validates the Windows review-correction executable,
+`BatteryHub.exe`, with SHA-256:
+
+```text
+6E4C8A6D137ED8B549CCFB74AAF2E81071FAB4695A655B27C785DF3999063F42
+```
+
+Its application sources are commit
+`bc342dbb2a370ffc57c2dae1fa85291000d46fc5`. The Windows application build and
+75-executable canonical suite pass. The final strengthened Logitech fixture
+also passes the focused target with assertions enabled and
+`-Wall -Wextra -Werror`. Two warnings remain in the unchanged Soundcore fixture.
+Independent semantic review has no remaining introduced findings.
+
+The final executable's resident snapshot was observed 134 times across 33
+distinct snapshot updates over approximately 11 minutes. Flow 2 retained 100%
+and MX Master 4 retained 95% during unanswered queries. Historical receipts
+remained fixed across repeated updates while their ages increased; exported
+ages agreed with snapshot UTC age within one second. These readings used
+`last_known` and `no_response`, without claiming protocol-reported sleep or
+active charging, live status, or low-battery status. Both devices subsequently
+returned fresh reports. Widget values and cleared historical hover wording
+were manually confirmed.
+
+Receiver removal was confirmed by Windows inventory: the keyboard entry
+disappeared while the mouse remained present. Reconnection produced a new
+current 100% keyboard report, dated after removal. The Windows PnP instance
+set changed after reconnection, so this sequence does not establish stable
+instance identity. Startup began without cached keyboard history and obtained
+a valid report before retaining it. Early fresh reports were observed without
+assuming deliberate input; the later visual/wake check and wireless typing
+after reconnection were explicitly confirmed. Preferences, startup registration,
+and the battery-history file hash remained unchanged.
+
+The native Linux Debug configure, complete Ninja application build, and all
+five CTest tests now pass. The first full link exposed six existing pollers
+missing from the CMake driver library: Zebronics, Keychron, Lamzu, Aula,
+Ninjutso, and Rapoo. The corrected source list registers their existing files
+without changing protocol code, polling order, or Windows build inputs. A
+separate independent review of that correction passes. The application sources
+and Windows executable above remain unchanged by this Linux build correction.
+
+The Linux build used Ubuntu 24.04 WSL, GCC 13.3, CMake 3.28.3, Ninja 1.11.1,
+GTK4 4.14.5, and Cairo 1.18.0. The build prerequisites were installed before
+this final gate. The commands in the preceding section reproduce the native
+configure/build/CTest path. Linux GUI operation, physical-device parity,
+packaging, and Flow 2 support on Linux are not established by that result.
+
+This focused final check does not repeat the earlier themes, dimming, tray,
+cable, extended idle, and Windows suspend/resume matrix below. Explicit
+unavailable/error injection, multiple physical receivers, and protocol-reported
+sleep retain synthetic coverage. Commands, exit records, failed and corrected
+build logs, source identities, and observation results are retained locally;
+generated binaries, raw host identifiers, and device backups are not committed.
+
+### Earlier Windows checkpoint
+
 The hardware observations below describe the preceding Windows candidate,
 `BatteryHub.exe`, with
 SHA-256:
@@ -206,8 +265,9 @@ Focused source review found no timeout or incomplete-scan deletion path for an
 established binding. One complete inventory reporting its transport absent is
 sufficient to invalidate that binding; there is no multi-poll removal debounce.
 
-The complete Linux application build remains **not run**: no suitable
-pre-provisioned environment was found and dependencies were not installed.
+At this earlier checkpoint the complete Linux application build was **not
+run**: no suitable pre-provisioned environment was found and dependencies were
+not installed. The final checkpoint above closes that build/test gap.
 Portable Linux policy tests and driver/backend compilation pass.
 Release-equivalent compilation and execution of all five portable fixtures
 also pass with assertions enabled. These checks do not replace the native
